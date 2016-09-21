@@ -2,7 +2,7 @@
 
 ## Why?
 
-This is a Markdown file to use like reminder of elixir details, because I learning things very fast and forget also.
+This is a Markdown file to use like reminder of elixir details, because I learn things very fast and forget also.
 Then this will help me to remember elixir caracteristics.
 
 ### Sigils
