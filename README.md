@@ -106,3 +106,20 @@ Example:
 
 #### structs
   structs are like maps but is special type.
+
+#### The ?
+  Elixir use UTF-8 string. And to discover the code of a char in string you can use the operator ?.
+
+  Example:
+  ```elixir
+  ?C
+  ```
+  Result: 67
+
+  Could you use the function codepoints of String module to split the characters of string
+
+  Example:
+  ```elixir
+  String.codepoints("daniel")
+  ```
+  Result: ["d", "a", "n", "i", "e", "l"]
