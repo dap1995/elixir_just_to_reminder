@@ -123,3 +123,11 @@ Example:
   String.codepoints("daniel")
   ```
   Result: ["d", "a", "n", "i", "e", "l"]
+
+#### Especial Conventions
+
+  **!** - Use for functions which raise exceptions on failure
+  **?** - Use for functions which return a boolean value
+  **_** - Use to ignore arguments of a function or part of pattern matching expression
+  **.** - Used for calling anonymous function
+  
