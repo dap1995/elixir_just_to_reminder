@@ -23,9 +23,7 @@ Used to create anon functions
   Example:
 
   ```elixir
-
    sum = &(&1 + &2)
-
   ```
 
   Result: sum.(2, 3)
@@ -46,7 +44,8 @@ Divided argument of body with ->
 Example:
 ```elixir
 sum = fn (a,b) -> a + b end
-sum.(1,2) ```
+sum.(1,2)
+```
 
 Result: 3
 
