@@ -23,7 +23,8 @@ Used to create anon functions
   Example:
   ```elixir
    sum = &(&1 + &2)
-   ```
+
+  ```
 
   Result: sum.(2, 3)
   5
