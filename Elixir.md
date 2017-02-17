@@ -21,7 +21,9 @@ Result will be: ["Daniel","is","Very","Hot"]
 Used to create anon functions
 
   Example:
+
   ```elixir
+
    sum = &(&1 + &2)
 
   ```
