@@ -76,4 +76,79 @@ res0: String = Luiz
 
 protected allows a method in a class to be accessed by own class or subclass that extends it.
 
-#### implicit
+#### Private[this]
+
+Is the most restrictive access scope.
+It's defines that the method is available to the current instance of the current object.
+
+Example below doesn't compile:
+```
+class Foo {
+    private[this] def isFoo = true
+    def doFoo(other: Foo) {
+        if (other.isFoo) {  // this line won't compile
+            // ...
+        }
+    }
+}
+```
+
+because the other instance don't permit the access on others instances.
+
+#### Implicit parameters
+
+The final parameters list on a method can be marked implicit to make a implicit value of the context able to be passed implicitly to this method
+
+```
+class Prefixer(val prefix: String)
+def addPrefix(s: String)(implicit p: Prefixer) = p.prefix + s
+
+implicit val myImplicitPrefixer = new Prefixer("***")
+addPrefix("abc")  // returns "***abc"
+```
+
+Other example can be goot to understand better:
+The controller Action do this ->
+  ```apply(block: (Request[AnyContent]) ⇒ Result): Action[AnyContent]```
+
+And we makes it like this ->
+  ```
+  def newTask = Action { implicit request =>
+  taskForm.bindFromRequest.fold(
+        errors => BadRequest(views.html.index(Task.all(), errors)),
+        label => {
+          Task.create(label)
+          Redirect(routes.Application.tasks())
+        } 
+    )
+  }
+  ```
+
+The implicit request in this case is because bindFromRequest needs the request like implicit
+
+But you can pass a implicit request or not.
+
+### Implicit conversions
+
+Implicit conversions allows to make conversions of a object without needs to explicit the conversion.
+Below follows a comparative example of implicit conversion to make better understanding.
+
+```
+scala> implicit def doubleToInt(d: Double) = d.toInt
+scala> val x: Int = 42.0
+x: Int = 42
+```
+
+```
+scala> def doubleToInt(d: Double) = d.toInt
+scala> val x: Int = 42.0
+<console>:11: error: type mismatch;
+ found   : Double(42.0)
+ required: Int
+       val x: Int = 42.0
+```
+
+#### References
+
+https://stackoverflow.com/questions/10375633/understanding-implicit-in-scala/10375941#10375941
+http://alvinalexander.com/scala/how-to-control-scala-method-scope-object-private-package
